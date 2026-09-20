@@ -1,6 +1,6 @@
 cask "cloudnetip-spn" do
-  version "0.6.4"
-  sha256 "544d843cd84589aee0ad3eeff2db40635a1c5971cce3f5680a32628e78a523b9"
+  version "0.6.5"
+  sha256 "13a07053ec404fb7f046571ac4a692b6a61a5e1525d82028f8e72d2ba79b6580"
 
   url "https://github.com/cloudnetip/netip-spn/releases/download/v#{version}/Cloudnetip-SPN-#{version}.zip"
   name "Cloudnetip SPN"
@@ -12,10 +12,10 @@ cask "cloudnetip-spn" do
 
   app "Cloudnetip SPN.app"
 
-  postflight do
-    system_command "/usr/bin/xattr",
-                   args: ["-d", "com.apple.quarantine", "#{appdir}/Cloudnetip SPN.app"],
-                   sudo: false
+  postflight_steps do
+    run "/usr/bin/xattr",
+        args: ["-d", "com.apple.quarantine", "{{appdir}}/Cloudnetip SPN.app"],
+        must_succeed: false
   end
 
   zap trash: [
